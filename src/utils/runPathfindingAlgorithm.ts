@@ -3,6 +3,7 @@ import { bfs } from "../lib/algorithms/pathfinding/bfs";
 import { dfs } from "../lib/algorithms/pathfinding/dfs";
 import { dijkstra } from "../lib/algorithms/pathfinding/dijkstra";
 import { bmf } from "../lib/algorithms/pathfinding/bmf";
+import { heapBmf } from "../lib/algorithms/pathfinding/heap-bmf";
 import { AlgorithmType, GridType, TileType } from "./types";
 
 export const runPathfindingAlgorithm = ({
@@ -27,6 +28,8 @@ export const runPathfindingAlgorithm = ({
       return aStar(grid, startTile, endTile);
     case "BMF":
       return bmf(grid, startTile, endTile);
+    case "BMF-HEAP":
+      return heapBmf(grid, startTile, endTile);
     default:
       return bfs(grid, startTile, endTile);
   }

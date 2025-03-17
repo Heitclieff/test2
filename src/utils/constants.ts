@@ -47,6 +47,7 @@ export const PATHFINDING_ALGORITHMS: AlgorithmSelectType[] = [
   { name: "Breath First Search", value: "BFS" },
   { name: "Depth First Search", value: "DFS" },
   { name: "Bellman-Ford", value: "BMF" },
+  { name: "Bellman-Ford Heap", value: "BMF-HEAP" },
 ];
 
 export const SPEEDS: SpeedSelectType[] = [

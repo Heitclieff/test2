@@ -7,6 +7,7 @@ export const dijkstra = (
   startTile: TileType,
   endTile: TileType
 ) => {
+  console.time('dijkstra');  // เริ่มจับเวลา
   const traversedTiles = []; // Initialize an array to store traversed tiles
   const base = grid[startTile.row][startTile.col]; // Get the start tile from the grid
   base.distance = 0; // Set the distance of the start tile to 0
@@ -46,5 +47,8 @@ export const dijkstra = (
     path.unshift(current); // Add the tile to the path
     current = current.parent!; // Move to the parent tile
   }
+
+  console.timeEnd('dijkstra');  // หยุดจับเวลาและแสดงผล
+  console.log("dijkstra tiles", traversedTiles, path)
   return { traversedTiles, path }; // Return the traversed tiles and the path
 };

@@ -1,4 +1,4 @@
-export type AlgorithmType = "DIJKSTRA" | "A_STAR" | "BFS" | "DFS" | "BMF";
+export type AlgorithmType = "DIJKSTRA" | "A_STAR" | "BFS" | "DFS" | "BMF" | "BMF-HEAP";
 export interface AlgorithmSelectType {
   name: string;
   value: AlgorithmType;
