@@ -17,6 +17,8 @@ export const dijkstra = (
     // Continue while there are untraversed tiles
     untraversedTiles.sort((a, b) => a.distance - b.distance); // Sort the queue by distance
     const currentTile = untraversedTiles.shift(); // Get the tile with the smallest distance
+    console.log('distance', currentTile?.distance);
+
     if (currentTile) {
       // If the current tile is valid
       if (currentTile.isWall) continue; // Skip if the tile is a wall
@@ -25,6 +27,7 @@ export const dijkstra = (
       traversedTiles.push(currentTile); // Add the tile to the traversed tiles array
       if (isEqual(currentTile, endTile)) break; // Break if the tile is the end tile
       const neighbors = getUntraversedNeighbors(grid, currentTile); // Get untraversed neighbors of the tile
+    
       for (let i = 0; i < neighbors.length; i += 1) {
         // Iterate through each neighbor
         if (currentTile.distance + 1 < neighbors[i].distance) {
@@ -46,5 +49,8 @@ export const dijkstra = (
     path.unshift(current); // Add the tile to the path
     current = current.parent!; // Move to the parent tile
   }
+
+
+  console.log("dijkstra tiles", traversedTiles, path)
   return { traversedTiles, path }; // Return the traversed tiles and the path
 };

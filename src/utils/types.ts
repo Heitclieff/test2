@@ -13,7 +13,6 @@ export interface MazeSelectType {
 export type TileType = {
   row: number;
   col: number;
-  weight: number;
   isEnd: boolean;
   isWall: boolean;
   isPath: boolean;
