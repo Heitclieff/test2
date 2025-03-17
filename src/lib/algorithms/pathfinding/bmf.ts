@@ -40,18 +40,25 @@ export const bmf = (grid: GridType, startTile: TileType, endTile: TileType) => {
     let prevParents: any
     // Process each neighbor
     for (let i = 0; i < neighbors.length; i += 1) {
-      neighbors[i].distance = currentTile.distance + 1;
+      dropFromQueue(neighbors[i], untraversedTiles); // Remove the neighbor from the queue
       if (neighbors[i].distance >= -1) {
-        dropFromQueue(neighbors[i], untraversedTiles); // Remove the neighbor from the queue
+        neighbors[i].distance = currentTile.distance + 1;
         neighbors[i].parent = currentTile; // Set the neighbor's parent to the current tile
         untraversedTiles.push(neighbors[i]); // Add the neighbor to the queue
         traversedTiles.push(currentTile);
         prevParents = currentTile
       }
       else {
+        neighbors[i].distance = currentTile.distance - 1;
         neighbors[i].parent = prevParents ?? currentTile
         untraversedTiles.push(neighbors[i === 0 ? i : i - 1]); // Add the neighbor to the queue
         traversedTiles.push(prevParents);
+      }
+
+      if (prevParents.distance < neighbors[i].distance) {
+        neighbors[i].distance = prevParents.distance; // Update the neighbor's distance
+        neighbors[i].parent = currentTile; // Set the current tile as its parent (for path reconstruction)
+        pq.enqueue(neighbors[i]); // Add the updated neighbor to the priority queue
       }
     }
   }
@@ -72,3 +79,4 @@ export const bmf = (grid: GridType, startTile: TileType, endTile: TileType) => {
   // Return both the traversed tiles (for visualization) and the final path
   return { traversedTiles, path };
 };
+

@@ -9,7 +9,7 @@ function App() {
   const isVisualizationRunningRef = useRef(false);
 
   return (
-    <PathfindingProvider>n
+    <PathfindingProvider>
       <TileProvider>
         <SpeedProvider>
           <div className="h-screen w-screen flex flex-col bg-[#131416]">
